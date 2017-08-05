@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CoreApp.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreApp.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
         [HttpGet]
-        public string Index()
+        public IActionResult Index()
         {
-            return "Hello from Dorna";
+            var model = new Restaurant() { Id = 1, Name = "Marty" };
+            return new ObjectResult(model);
         }
     }
 }
