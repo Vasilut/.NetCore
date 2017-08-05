@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Routing;
 
 namespace CoreApp
 {
@@ -59,7 +60,8 @@ namespace CoreApp
             //app.UseDefaultFiles();
             //app.UseStaticFiles(); //html files, js
             app.UseFileServer(); //default files + static files.
-            app.UseMvcWithDefaultRoute(); //start using mvc
+            app.UseMvc(ConfigureRoutes);//start using mvc
+            app.Run(ctx => ctx.Response.WriteAsync("Not found my boy!!!")); // in case that the route is not good
 
             //app.UseWelcomePage(new WelcomePageOptions
             //{
@@ -73,5 +75,13 @@ namespace CoreApp
             //    await context.Response.WriteAsync(message);
             //});
         }
+
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+            // /Home/Index/32
+
+            routeBuilder.MapRoute("Default", 
+                "{controller=Home}/{action=Index}/{id?}"); //so, if we're not fiinding a good controller/action the default will be home and the action Index.
+         }
     }
 }
