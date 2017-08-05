@@ -21,7 +21,7 @@ namespace CoreApp
                         .AddEnvironmentVariables();
 
             Configuration = builder.Build();
-            
+
         }
 
         public IConfiguration Configuration { get; set; }
@@ -30,9 +30,10 @@ namespace CoreApp
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddSingleton(Configuration);
             services.AddSingleton<IGreeter, Greeter>();
-           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,12 +48,30 @@ namespace CoreApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.Run(async (context) =>
+            else
             {
-                var message = greeter.GetGreeting();
-                await context.Response.WriteAsync(message);
-            });
+                app.UseExceptionHandler(new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = context => context.Response.WriteAsync("Hopaa")
+                });
+            }
+
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles(); //html files, js
+            app.UseFileServer(); //default files + static files.
+            app.UseMvcWithDefaultRoute(); //start using mvc
+
+            //app.UseWelcomePage(new WelcomePageOptions
+            //{
+            //    Path = "/welcome"
+            //});
+
+            //app.Run(async (context) =>
+            //{
+                
+            //    var message = greeter.GetGreeting();
+            //    await context.Response.WriteAsync(message);
+            //});
         }
     }
 }
