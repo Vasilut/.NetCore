@@ -1,15 +1,23 @@
 ﻿using CoreApp.Models;
+using CoreApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreApp.Controllers
 {
     public class HomeController : Controller
     {
+        private IRestaurantData _restaurantData;
+
+        public HomeController(IRestaurantData restaurantData)
+        {
+            _restaurantData = restaurantData;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
-            var model = new Restaurant() { Id = 1, Name = "Marty" };
-            return new ObjectResult(model);
+            var restaurants = _restaurantData.GetAll();
+            return View(restaurants);
         }
     }
 }
