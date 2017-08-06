@@ -1,4 +1,4 @@
-﻿namespace CoreApp.Models
+﻿namespace CoreApp.Entities
 {
     public class Restaurant
     {

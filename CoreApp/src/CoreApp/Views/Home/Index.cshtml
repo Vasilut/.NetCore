@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CoreApp.Models.Restaurant>
+﻿@model CoreApp.ViewModels.HomePageViewModel
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,7 +8,10 @@
     <h1>Welcome</h1>
     <table>
 
-        @foreach (var item in Model)
+        <tr>
+            @Model.CurrentMessage
+        </tr>
+        @foreach (var item in Model.Restaurants)
         {
             <tr>
                 <td>@item.Id</td>
