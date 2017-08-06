@@ -60,7 +60,7 @@ namespace CoreApp
             //app.UseStaticFiles(); //html files, js
             app.UseFileServer(); //default files + static files.
             app.UseMvc(ConfigureRoutes);//start using mvc
-            app.Run(ctx => ctx.Response.WriteAsync("Not found my boy!!!")); // in case that the route is not good
+            app.Run(ctx => ctx.Response.WriteAsync("The route is not good!!!")); // in case that the route is not good
 
             //app.UseWelcomePage(new WelcomePageOptions
             //{

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CoreApp.Entities;
+using System.Linq;
 
 namespace CoreApp.Services
 {
@@ -16,6 +18,12 @@ namespace CoreApp.Services
                 new Restaurant {Id=3, Name= "Hugo" }
             };
         }
+
+        public Restaurant Get(int id)
+        {
+            return _restaurants.FirstOrDefault(x => x.Id == id);
+        }
+
         public IEnumerable<Restaurant> GetAll()
         {
             return _restaurants;
