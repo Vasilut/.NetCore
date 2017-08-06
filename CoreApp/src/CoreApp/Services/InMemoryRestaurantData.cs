@@ -7,9 +7,9 @@ namespace CoreApp.Services
 {
     public class InMemoryRestaurantData : IRestaurantData
     {
-        private List<Restaurant> _restaurants;
+        private static List<Restaurant> _restaurants;
 
-        public InMemoryRestaurantData()
+        static InMemoryRestaurantData() //is static just for test purpose
         {
             _restaurants = new List<Restaurant>()
             {
@@ -17,6 +17,13 @@ namespace CoreApp.Services
                 new Restaurant {Id=2, Name = "Bricks" },
                 new Restaurant {Id=3, Name= "Hugo" }
             };
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            newRestaurant.Id = _restaurants.Max(x => x.Id) + 1;
+            _restaurants.Add(newRestaurant);
+            return newRestaurant;
         }
 
         public Restaurant Get(int id)
