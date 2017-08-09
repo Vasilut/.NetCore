@@ -1,26 +1,25 @@
 ﻿@model CoreApp.ViewModels.HomePageViewModel
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Order Food</title>
-</head>
-<body>
-    <h1>Welcome</h1>
-    <table>
+@{ 
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
+<h1>Welcome</h1>
+<table>
+
+    @foreach (var item in Model.Restaurants)
+    {
         <tr>
-            @Model.CurrentMessage
+            <td>
+                @*<a href="/home/details/@item.Id">Details</a>*@
+                @Html.ActionLink("View", "Details", new { Id = item.Id })
+            </td>
+            <td>@item.Name</td>
         </tr>
-        @foreach (var item in Model.Restaurants)
-        {
-            <tr>
-                <td>
-                    @*<a href="/home/details/@item.Id">Details</a>*@
-                    @Html.ActionLink("View","Details", new { Id = item.Id})
-                </td>
-                <td>@item.Name</td>
-            </tr>
-        }
-    </table>
-</body>
-</html>
+    }
+</table>
+
+@section footer{
+    <h3>@Model.CurrentMessage</h3>
+}
