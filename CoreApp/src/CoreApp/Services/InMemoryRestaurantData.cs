@@ -26,6 +26,11 @@ namespace CoreApp.Services
             return newRestaurant;
         }
 
+        public void Commit()
+        {
+            //no op
+        }
+
         public Restaurant Get(int id)
         {
             return _restaurants.FirstOrDefault(x => x.Id == id);

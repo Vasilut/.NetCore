@@ -17,9 +17,13 @@ namespace CoreApp.Services
         public Restaurant Add(Restaurant newRestaurant)
         {
             _dbContext.Add(newRestaurant);
-            _dbContext.SaveChanges();
             //_dbContext.Restaurants.Add(newRestaurant);
             return newRestaurant;
+        }
+
+        public void Commit()
+        {
+            _dbContext.SaveChanges();
         }
 
         public Restaurant Get(int id)
