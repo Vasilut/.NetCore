@@ -1,10 +1,14 @@
 ﻿using CoreApp.Entities;
 using CoreApp.Services;
 using CoreApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreApp.Controllers
 {
+
+
+    [Authorize]
     public class HomeController : Controller
     {
         private IGreeter _greeter;
@@ -46,6 +50,7 @@ namespace CoreApp.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var model = new HomePageViewModel();
