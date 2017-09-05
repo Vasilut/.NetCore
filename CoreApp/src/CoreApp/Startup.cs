@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Routing;
 using CoreApp.Services;
 using CoreApp.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CoreApp
 {
@@ -37,6 +38,8 @@ namespace CoreApp
             services.AddSingleton<IGreeter, Greeter>();
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
             services.AddDbContext<FoodDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("FoodRestaurants"))); //here I will put the connection string
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<FoodDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +65,7 @@ namespace CoreApp
             //app.UseDefaultFiles();
             //app.UseStaticFiles(); //html files, js
             app.UseFileServer(); //default files + static files.
+            app.UseIdentity(); //use identity
             app.UseMvc(ConfigureRoutes);//start using mvc
             app.Run(ctx => ctx.Response.WriteAsync("The route is not good!!!")); // in case that the route is not good
 
