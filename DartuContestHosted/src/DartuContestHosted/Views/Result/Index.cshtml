@@ -1,4 +1,17 @@
-﻿@{
+﻿@model IEnumerable<DartuContestHosted.Models.Rezultate>
+
+@{
+    foreach (var item in Model)
+    {
+        <td>@item.Id</td>
+        <td>@item.Nume</td>
+        <td>@item.Prenume</td>
+        <td>@item.Clasa</td>
+        <td>@item.Scor</td>
+    }
+}
+
+@{
     ViewData["Title"] = "Result Page";
 }
 <h2>@ViewData["Title"].</h2>

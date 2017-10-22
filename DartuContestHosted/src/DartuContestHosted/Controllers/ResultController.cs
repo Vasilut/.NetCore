@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using DartuContestHosted.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,10 +11,16 @@ namespace DartuContestHosted.Controllers
 {
     public class ResultController : Controller
     {
+        private ResultsContext _dbContext;
+        public ResultController()
+        {
+            _dbContext = new ResultsContext();
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            var results = _dbContext.Rezultate.ToList();
+            return View(results);
         }
     }
 }
