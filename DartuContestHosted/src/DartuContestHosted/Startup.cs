@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DartuContestHosted.Models;
 using Microsoft.EntityFrameworkCore;
+using DartuContestHosted.Services;
 
 namespace DartuContestHosted
 {
@@ -40,6 +41,7 @@ namespace DartuContestHosted
             services.AddMvc();
             services.AddSingleton(Configuration);
             services.AddDbContext<ResultsContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DartuConnection")));
+            services.AddScoped<IParticipantResultsRepository, ParticipantResultsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
