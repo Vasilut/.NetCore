@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using DartuContestHosted.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DartuContestHosted
 {
@@ -35,8 +37,9 @@ namespace DartuContestHosted
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
             services.AddMvc();
+            services.AddSingleton(Configuration);
+            services.AddDbContext<ResultsContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DartuConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

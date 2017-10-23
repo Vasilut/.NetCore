@@ -12,9 +12,9 @@ namespace DartuContestHosted.Controllers
     public class ResultController : Controller
     {
         private ResultsContext _dbContext;
-        public ResultController()
+        public ResultController(ResultsContext dbContext)
         {
-            _dbContext = new ResultsContext();
+            _dbContext = dbContext;
         }
         // GET: /<controller>/
         public IActionResult Index()
