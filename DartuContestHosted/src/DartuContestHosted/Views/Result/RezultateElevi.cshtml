@@ -17,7 +17,16 @@
                     Clasa
                 </th>
                 <th>
-                    Scor
+                    Scoala
+                </th>
+                <th>
+                    Problema 1
+                </th>
+                <th>
+                    Problema 2
+                </th>
+                <th>
+                    Problema 3
                 </th>
             </tr>
             @foreach (var item in Model)
@@ -36,7 +45,16 @@
                         @Html.DisplayFor(modelItem => item.Clasa)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Scor)
+                        @Html.DisplayFor(modelItem => item.Scoala)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P2)
                     </td>
                 </tr>
             }

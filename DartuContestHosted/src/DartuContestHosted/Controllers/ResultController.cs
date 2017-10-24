@@ -29,8 +29,7 @@ namespace DartuContestHosted.Controllers
         [HttpGet]
         public IActionResult RezultateElevi(int id)
         {
-            //fitered by ID:TBD
-            var results = _participantResultsRepository.GetResults();
+            var results = _participantResultsRepository.GetResults().Where(part => part.Clasa == id).ToList();
             return View(results);
         }
     }
