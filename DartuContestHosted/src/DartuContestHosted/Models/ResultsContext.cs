@@ -9,7 +9,9 @@ namespace DartuContestHosted.Models
     {
         public ResultsContext(DbContextOptions options):base(options)
         {
-
+            /*
+             * Scaffold-DbContext "Data Source=DESKTOP-GBUDIMC;Initial Catalog=Results;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+             */
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

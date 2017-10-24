@@ -19,8 +19,17 @@ namespace DartuContestHosted.Controllers
             _participantResultsRepository = participantResultsRepository;
         }
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
+            var results = _participantResultsRepository.GetResults();
+            return View(results);
+        }
+
+        [HttpGet]
+        public IActionResult RezultateElevi(int id)
+        {
+            //fitered by ID:TBD
             var results = _participantResultsRepository.GetResults();
             return View(results);
         }
