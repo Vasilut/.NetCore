@@ -12,7 +12,6 @@ namespace DartuContestHosted.Controllers
 {
     public class ResultController : Controller
     {
-        private ResultsContext _dbContext;
         private IParticipantResultsRepository _participantResultsRepository;
         public ResultController(IParticipantResultsRepository participantResultsRepository)
         {
@@ -22,8 +21,7 @@ namespace DartuContestHosted.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var results = _participantResultsRepository.GetResults();
-            return View(results);
+            return View();
         }
 
         [HttpGet]
