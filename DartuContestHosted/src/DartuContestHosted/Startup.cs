@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using DartuContestHosted.Models;
 using Microsoft.EntityFrameworkCore;
 using DartuContestHosted.Services;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DartuContestHosted
 {
@@ -40,6 +41,8 @@ namespace DartuContestHosted
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc();
             services.AddSingleton(Configuration);
+            services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<ResultsContext>();
             services.AddDbContext<ResultsContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DartuConnection")));
             services.AddScoped<IParticipantResultsRepository, ParticipantResultsRepository>();
         }
@@ -65,6 +68,7 @@ namespace DartuContestHosted
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {
