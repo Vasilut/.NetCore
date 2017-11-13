@@ -1,4 +1,5 @@
-﻿using DartuContestHosted.Services;
+﻿using DartuContestHosted.Models;
+using DartuContestHosted.Services;
 using DartuContestHosted.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -40,6 +41,35 @@ namespace DartuContestHosted.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(ElevViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var newElev = new Rezultate
+                {
+                    Nume = model.Nume,
+                    Clasa = model.Clasa,
+                    Prenume = model.Prenume,
+                    Scoala = model.Scoala,
+                    P1 = model.P1,
+                    P2 = model.P2,
+                    P3 = model.P3
+                };
+
+                _participantResultsRepository.Add(newElev);
+                _participantResultsRepository.Commit();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         [HttpGet]
