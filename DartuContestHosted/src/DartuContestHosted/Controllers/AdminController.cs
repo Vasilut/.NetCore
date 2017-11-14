@@ -1,14 +1,17 @@
 ﻿using DartuContestHosted.Models;
 using DartuContestHosted.Services;
 using DartuContestHosted.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace DartuContestHosted.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IParticipantResultsRepository _participantResultsRepository;
@@ -92,15 +95,23 @@ namespace DartuContestHosted.Controllers
             var stud = _participantResultsRepository.Get(id);
             if (ModelState.IsValid)
             {
-                if (!string.IsNullOrEmpty(model.Nume))
-                {
-                    stud.Nume = model.Nume;
-                }
-                _participantResultsRepository.Commit(); //update
+                //iterate over the property and see which can be updated
+                //Type type = model.GetType();
+                //var propertyInfo = type.GetProperties();
 
+                //foreach (var item in propertyInfo)
+                //{
+                //    var value = item.GetValue(model, null);
+                //    if (value != null)
+                //    {
+                //        //we can make update
+                //        item.SetValue(stud, Convert.ChangeType(value, item.PropertyType), null);
+                //    }
+                //}
+
+                _participantResultsRepository.Commit(); //update
                 //update
                 return RedirectToAction("Index");
-
             }
             return View(stud);
         }
