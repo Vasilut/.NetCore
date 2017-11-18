@@ -70,7 +70,7 @@ namespace DartuContestHosted
 
             app.UseApplicationInsightsExceptionTelemetry();
             app.UseStaticFiles();
-            app.UseNodeModules(env);
+            //app.UseNodeModules(env);
             app.UseIdentity();
 
             app.UseMvc(routes =>
