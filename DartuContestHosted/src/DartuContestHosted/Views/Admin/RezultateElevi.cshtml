@@ -28,6 +28,8 @@
             <th>
                 Problema 3
             </th>
+            <th></th>
+            <th></th>
 
         </tr>
         @foreach (var item in Model)
@@ -38,10 +40,10 @@
 </div>
 
 <div>
-    @Html.ActionLink("Back", "Index")
+    <a class="btn btn-default" asp-controller="Admin" asp-action="Index">Back</a>
 </div>
 
 <div>
-    <a asp-controller="Admin" asp-action="Create">Create</a>
+    <a class="btn btn-default" asp-controller="Admin" asp-action="Create">Create</a>
 </div>
 

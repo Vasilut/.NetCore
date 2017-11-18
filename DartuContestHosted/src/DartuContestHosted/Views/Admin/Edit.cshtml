@@ -5,48 +5,52 @@
 
     <div>
 
-        <form method="post" asp-antiforgery="true">
+        <form method="post" class="navbar-form" asp-antiforgery="true">
             
             <div>
-                <label asp-for="Nume"></label>
+                <label class="label label-primary" asp-for="Nume"></label>
                 @Html.EditorFor(m => m.Nume)
             </div>
 
             <div>
-                <label asp-for="Prenume"></label>
+                <label class="label label-primary" asp-for="Prenume"></label>
                 @Html.EditorFor(m => m.Prenume)
             </div>
 
             <div>
-                <label asp-for="Clasa"></label>
+                <label class="label label-primary" asp-for="Clasa"></label>
                 @Html.EditorFor(m => m.Clasa)
             </div>
 
             <div>
-                <label asp-for="Scoala"></label>
+                <label class="label label-primary" asp-for="Scoala"></label>
                 @Html.EditorFor(m => m.Scoala)
             </div>
 
             <div>
-                <label asp-for="P1"></label>
+                <label class="label label-primary" asp-for="P1"></label>
                 @Html.EditorFor(m => m.P1)
             </div>
 
             <div>
-                <label asp-for="P2"></label>
+                <label class="label label-primary" asp-for="P2"></label>
                 @Html.EditorFor(m => m.P2)
             </div>
 
             <div>
-                <label asp-for="P3"></label>
+                <label class="label label-primary" asp-for="P3"></label>
                 @Html.EditorFor(m => m.P3)
             </div>
                      
             <div>
-                <input type="submit" value="Save!" />
+                <input class="btn btn-default" type="submit" value="Save!" />
             </div>
         </form>
 
     </div>
 
+</div>
+
+<div>
+    <a class="btn btn-default" asp-controller="Admin" asp-action="Index">Back</a>
 </div>
