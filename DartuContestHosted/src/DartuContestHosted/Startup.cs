@@ -11,6 +11,8 @@ using DartuContestHosted.Models;
 using Microsoft.EntityFrameworkCore;
 using DartuContestHosted.Services;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.PlatformAbstractions;
+using DartuContestHosted.Middleware;
 
 namespace DartuContestHosted
 {
@@ -48,7 +50,8 @@ namespace DartuContestHosted
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+                             ILoggerFactory loggerFactory) 
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -66,8 +69,8 @@ namespace DartuContestHosted
             }
 
             app.UseApplicationInsightsExceptionTelemetry();
-
             app.UseStaticFiles();
+            app.UseNodeModules(env);
             app.UseIdentity();
 
             app.UseMvc(routes =>
