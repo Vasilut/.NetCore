@@ -95,6 +95,25 @@ namespace DartuContestHosted.Controllers
             var stud = _participantResultsRepository.Get(id);
             if (ModelState.IsValid)
             {
+                if(!string.IsNullOrEmpty(model.Nume))
+                {
+                    stud.Nume = model.Nume;
+                }
+
+                if(!string.IsNullOrEmpty(model.Prenume))
+                {
+                    stud.Prenume = model.Prenume;
+                }
+
+                if(!string.IsNullOrEmpty(model.Scoala))
+                {
+                    stud.Scoala = model.Scoala;
+                }
+
+                stud.P1 = model.P1;
+                stud.P2 = model.P2;
+                stud.P3 = model.P3;
+                
                 //iterate over the property and see which can be updated
                 //Type type = model.GetType();
                 //var propertyInfo = type.GetProperties();
