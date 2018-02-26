@@ -1,6 +1,9 @@
-﻿namespace Domain
+﻿using System;
+using System.Collections.Generic;
+
+namespace App
 {
-    public class Profesor
+    public partial class Profesor
     {
         public int Id { get; set; }
         public string Name { get; set; }
